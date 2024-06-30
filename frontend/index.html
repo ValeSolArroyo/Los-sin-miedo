@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Juego</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Agregar Juego</h1>
+    <form id="juegoForm">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <br>
+        <label for="precio">Precio:</label>
+        <input type="number" id="precio" name="precio" required>
+        <br>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <script>
+        document.getElementById('juegoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nombre = document.getElementById('nombre').value;
+            const precio = document.getElementById('precio').value;
+
+            axios.post('http://localhost:5000/juegos', {
+                nombre: nombre,
+                precio: precio
+            })
+            .then(function (response) {
+                alert('Juego agregado exitosamente!');
+            })
+            .catch(function (error) {
+                console.error('Error al agregar el juego:', error);
+                alert('Error al agregar el juego.');
+            });
+        });
+    </script>
+</body>
+</html>
