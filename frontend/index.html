@@ -56,9 +56,14 @@
                 fecha.setAttribute("class", "card-text");
                 fecha.textContent = `Fecha de creacion: ${juego.fecha_creacion}`;
 
+                const imagen = document.createElement("img");
+                imagen.setAttribute("class", "card-img-top");
+                imagen.setAttribute("src", juego.imagen)
+
                 card_body.appendChild(titulo);
                 card_body.appendChild(precio);
                 card_body.appendChild(fecha);
+                card_body.appendChild(imagen);
                 card.appendChild(card_body);
                 item.appendChild(card);
                 container.appendChild(item);

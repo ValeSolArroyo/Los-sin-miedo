@@ -1,5 +1,3 @@
-import datetime
-from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, request, jsonify
 from models import db, Juego
 from flask_cors import CORS
@@ -27,7 +25,8 @@ def obtener_juegos():
                 'id': juego.id,
                 'nombre': juego.nombre,
                 'precio': juego.precio,
-                'fecha_creacion': juego.fecha_creacion.strftime('%d/%m/%Y')
+                'fecha_creacion': juego.fecha_creacion.strftime('%d/%m/%Y'),
+                'imagen': juego.imagen
             }
             juegos_data.append(juego_data)
         return jsonify(juegos_data)
@@ -46,7 +45,8 @@ def obtener_juego_por_id(id):
             'id': juego.id,
             'nombre': juego.nombre,
             'precio': juego.precio,
-            'fecha_creacion': juego.fecha_creacion.strftime('%d/%m/%Y')
+            'fecha_creacion': juego.fecha_creacion.strftime('%d/%m/%Y'),
+            'imagen': juego.imagen
         }
         return jsonify(juego_data)
     except Exception as e:
@@ -59,8 +59,9 @@ def crear_juego():
         nuevo_nombre = data['nombre']
         nuevo_precio = data['precio']
         nueva_fecha_creacion = data['fecha_creacion']
+        nueva_imagen = data['imagen']
 
-        nuevo_juego = Juego(nombre=nuevo_nombre, precio=nuevo_precio, fecha_creacion=nueva_fecha_creacion)
+        nuevo_juego = Juego(nombre=nuevo_nombre, precio=nuevo_precio, fecha_creacion=nueva_fecha_creacion, imagen=nueva_imagen)
         db.session.add(nuevo_juego)
         db.session.commit()
 
