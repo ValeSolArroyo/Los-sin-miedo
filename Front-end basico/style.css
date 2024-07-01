@@ -1,0 +1,168 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+/*body {
+  background-image:url(https://img.freepik.com/vector-gratis/fondo-escritorio-moderno-vector-diseno-azul-geometrico_53876-135923.jpg?w=826&t=st=1718219129~exp=1718219729~hmac=4911f4504a3e2414e379897dacff09aa04023886a7b2de6b0e7d51727c66da7a) ;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}*/
+body {
+  font-family: "Playwrite IT Moderna", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  background-color: #ec8d8d;
+  height: 100%;
+  margin: 0%;
+  background-image: linear-gradient(to right, #ffffff, #ec8d8d);
+}
+.header{
+  background-color: #e099ad;
+  background-attachment: fixed;
+  padding: 5px;
+}
+.header nav a{
+  font-size: 15px;
+  padding-right: 20px;
+}
+.title{
+  color: purple;
+  text-decoration: none;
+  padding-left: 40px;
+}
+.main{
+  min-height: 100%;
+  padding-left: 2em;
+  padding-top: 1em;
+}
+.sec1{
+  padding-top: 3em;
+  padding-bottom: 2em;
+  background-color: #5e1254;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 70em;
+  box-shadow: 0 0 10px 5px purple;
+  color: white;
+}
+/*Recomendados, Agregar*/
+.subt, .subheader{
+  background-image: linear-gradient(to right, transparent, #a000eb);
+  background-size: auto;
+  padding-top: 1em;
+  padding-bottom: 0em;
+  font-size: 1.25em;
+}
+/*links dentro del wrapper*/
+.wrapper div a{
+  background-color: transparent;
+  font-size: 13px;
+  width: 100px;
+}
+.wrapper div {
+  border: solid transparant;
+  padding: 0em;
+  color: white;
+  font-size: 20px;
+}
+.wrapper {
+  width:150px;
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px solid transparent;
+  margin: 0px;
+}
+.wrapper > div {
+  flex: 1 1 150px;
+}
+/* seccion 2*/
+.sec2{
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  width: 800px;
+  height: 400px;
+  box-shadow: 0 0 10px 5px purple;
+}
+/*nav del header*/
+.head_nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  top: 65px;
+  right: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+/*footer*/
+.flex-container {
+  display: flex;
+  justify-content: space-evenly;
+  /* Distribuye elementos con espacio alrededor */
+  align-items: center;
+  /* Alinea elementos verticalmente en el centro */
+  border: none;
+  background-color: transparent;
+  padding-left: 20em;
+  padding-right: 20em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+.footer{
+  background-color: #e099ad;
+  background-attachment: fixed;
+}
+.footer a{
+  font-size: 15px;
+}
+/*links*/
+.link, span{
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+}
+.link:hover{
+  color: #e70de7;
+}
+/* config de la scrollbar */
+::-webkit-scrollbar {
+  width: 7.5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+::-webkit-scrollbar-thumb {
+  background: purple;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+/*agregar cuadros, menus, y botones*/
+#juegoForm{
+  background-color: #5e1254;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 70em;
+  box-shadow: 0 0 10px 5px black;
+  color: white;
+}
+.button{
+  padding: 0.5em;
+  background-color: #9d069d;
+  border-radius: 1em;
+  border: transparent;
+}
+.input{
+  width: 140px;
+}
