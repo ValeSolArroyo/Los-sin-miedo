@@ -1,7 +1,8 @@
+import datetime
+from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, request, jsonify
 from models import db, Juego
 from flask_cors import CORS
-import datetime
 
 app = Flask(__name__)
 CORS(app)
@@ -9,6 +10,8 @@ CORS(app)
 port = 5000
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://usuario:contrasenia@localhost:5432/tienda'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db.init_app(app)
 
 @app.route('/')
 def hello_world():
@@ -24,7 +27,7 @@ def obtener_juegos():
                 'id': juego.id,
                 'nombre': juego.nombre,
                 'precio': juego.precio,
-                'fecha_creacion': juego.fecha_creacion
+                'fecha_creacion': juego.fecha_creacion.strftime('%d/%m/%Y')
             }
             juegos_data.append(juego_data)
         return jsonify(juegos_data)
@@ -43,7 +46,7 @@ def obtener_juego_por_id(id):
             'id': juego.id,
             'nombre': juego.nombre,
             'precio': juego.precio,
-            'fecha_creacion': juego.fecha_creacion
+            'fecha_creacion': juego.fecha_creacion.strftime('%d/%m/%Y')
         }
         return jsonify(juego_data)
     except Exception as e:
@@ -67,8 +70,6 @@ def crear_juego():
 
 if __name__ == '__main__':
     print('Iniciando servidor...')
-    db.init_app(app)
     with app.app_context():
         db.create_all()
     app.run(host='0.0.0.0', port=port, debug=True)
-    print('Servidor iniciado')

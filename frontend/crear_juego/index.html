@@ -22,37 +22,58 @@
                 <label for="precio">Precio:</label>
                 <input type="number" class="form-control" id="precio" name="precio" required>
             </div>
+            <div class="form-group">
+                <label for="fecha_creacion">Fecha de Creación:</label>
+                <input type="text" class="form-control" id="fecha_creacion" name="fecha_creacion" placeholder="dd/mm/aa" required>
+            </div>
             <button type="submit" class="btn btn-primary">Agregar</button>
         </form>
     </div>
 
-    <!-- Bootstrap JS y dependencias de Popper.js y jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        document.getElementById('juegoForm').addEventListener('submit', function(event) {
+        document.getElementById('juegoForm').addEventListener('submit', manejarEnvioFormulario);
+
+        function manejarEnvioFormulario(event) {
             event.preventDefault();
 
             const nombre = document.getElementById('nombre').value;
             const precio = document.getElementById('precio').value;
+            const fecha_creacion = document.getElementById('fecha_creacion').value;
 
-            // Crear un objeto con los datos del juego
+            const fechaISO = formatoFecha(fecha_creacion);
+
             const juegoData = {
                 nombre: nombre,
-                precio: precio
+                precio: precio,
+                fecha_creacion: fechaISO
             };
 
+            enviarJuego(juegoData);
+        }
+
+        function formatoFecha(fecha) {
+            const partes = fecha.split('/');
+            const dia = partes[0];
+            const mes = partes[1];
+            const ano = partes[2];
+            return `${ano}-${mes}-${dia}`;
+        }
+
+        function enviarJuego(juegoData) {
             axios.post('http://localhost:5000/juegos', juegoData)
             .then(function (response) {
                 alert('Juego agregado exitosamente!');
+                window.location.href = 'http://localhost:8000/';
             })
             .catch(function (error) {
                 console.error('Error al agregar el juego:', error);
                 alert('Error al agregar el juego.');
             });
-        });
+        }
     </script>
 </body>
 </html>
