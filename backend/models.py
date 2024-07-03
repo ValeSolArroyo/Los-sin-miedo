@@ -17,3 +17,12 @@ class User(db.Model):
     usuario = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     contraseña = db.Column(db.String(50), nullable=False)
+
+class UserJuego(db.Model):
+    __tablename__='usuario_juegos'
+    id = db.Column(db.Integer, primary_key=True)
+    id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
+    id_juego = db.Column(db.Integer, db.ForeignKey('juegos.id'), nullable=False)
+    fecha_creacion = db.Column(db.DateTime, default=datetime.datetime.now) #or today()?
+    usuario = db.relationship('Usuarios')
+    juego = db.relationship('Juegos')
