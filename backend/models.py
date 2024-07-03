@@ -9,4 +9,4 @@ class Juego(db.Model):
     nombre = db.Column(db.String(100), nullable=False)
     precio = db.Column(db.Integer, nullable=False)
     fecha_creacion = db.Column(db.DateTime, default=datetime.datetime.today())
-    imagen = db.Column(db.String(100))
+    imagen = db.Column(db.String(200))

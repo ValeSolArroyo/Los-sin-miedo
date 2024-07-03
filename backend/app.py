@@ -68,6 +68,27 @@ def crear_juego():
         return jsonify({'message': 'Juego creado exitosamente'})
     except Exception as e:
         return jsonify({'message': 'Error al crear juego', 'error': str(e)}), 500
+    
+@app.route('/juegos/<int:id>', methods=['PUT'])
+def editar_juego(id):
+    try:
+        juego = Juego.query.get(id)
+
+        if not juego:
+            return jsonify({'message': 'Juego no encontrado'}), 404
+
+        data = request.json
+
+        juego.nombre = data.get('nombre', juego.nombre)
+        juego.precio = data.get('precio', juego.precio)
+        juego.fecha_creacion = data.get('fecha_creacion', juego.fecha_creacion)
+        juego.imagen = data.get('imagen', juego.imagen)
+
+        db.session.commit()
+
+        return jsonify({'message': 'Juego editado exitosamente'})
+    except Exception as e:
+        return jsonify({'message': 'Error al editar juego', 'error': str(e)}), 500
 
 if __name__ == '__main__':
     print('Iniciando servidor...')

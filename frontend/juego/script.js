@@ -47,8 +47,7 @@ function request_error(error) {
     console.error("Error al realizar la solicitud:", error);
 }
 
-let parametros = window.location.search;
-let id = new URLSearchParams(parametros).get("id");
+document.getElementById("editar").setAttribute("href", `/juego/editar/?id=${id}`);
 
 fetch("http://localhost:5000/juegos/"+id)   
     .then(response_received)

@@ -1,3 +1,14 @@
+function response_received(response) {
+    return response.json();
+}
+
+function handle_get_response(data) {
+    document.getElementById('nombre').value = data.nombre;
+    document.getElementById('precio').value = data.precio;
+    document.getElementById('fecha_creacion').value = data.fecha_creacion;
+    document.getElementById('imagen').value = data.imagen;
+}
+
 document.getElementById('juegoForm').addEventListener('submit', manejarEnvioFormulario);
 
 function manejarEnvioFormulario(event) {
@@ -29,8 +40,8 @@ function formatoFecha(fecha) {
 }
 
 function enviarJuego(juegoData) {
-    fetch('http://localhost:5000/juegos', {
-        method: 'POST',
+    fetch("http://localhost:5000/juegos/"+id, {
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -38,16 +49,22 @@ function enviarJuego(juegoData) {
     })
     .then(response => {
         if (!response.ok) {
-            throw new Error('Error al agregar el juego.');
+            throw new Error('Error al editar el juego.');
         }
         return response.json();
     })
     .then(data => {
-        alert('Juego agregado exitosamente!');
+        alert('Juego editado exitosamente!');
         window.location.href = 'http://localhost:8000/';
     })
     .catch(error => {
-        console.error('Error al agregar el juego:', error);
-        alert('Error al agregar el juego.');
+        console.error('Error al editar el juego:', error);
+        alert('Error al editar el juego.');
     });
 }
+
+
+fetch("http://localhost:5000/juegos/"+id)   
+    .then(response_received)
+    .then(handle_get_response)
+    .catch(request_error);
