@@ -1,8 +1,8 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify
 from models import db, Juego, User
 from flask_cors import CORS
 
-app = Flask(__name__, template_folder='../frontend')
+app = Flask(__name__)
 CORS(app)
 
 port = 5000
@@ -105,29 +105,96 @@ def editar_juego(id):
     except Exception as e:
         return jsonify({'message': 'Error al editar juego', 'error': str(e)}), 500
 
-@app.route('/registro', methods=['GET','POST'])
-def registro():
+# Crear un usuario
+@app.route('/usuarios', methods=['POST'])
+def crear_usuario():
+    try:
+        data = request.json
+        usuario = data['usuario']
+        email = data['email']
+        contraseña = data['contraseña']
 
-    if request.method == 'POST':
-        try:
-            usuario = request.form['usuario']
-            email = request.form['email']
-            contraseña = request.form['contraseña']
+        nuevo_usuario = User(usuario=usuario, email=email, contraseña=contraseña)
+        db.session.add(nuevo_usuario)
+        db.session.commit()
 
-            nuevo_user = User(usuario=usuario, email=email, contraseña=contraseña)
-            db.session.add(nuevo_user)
-            db.session.commit()
+        return jsonify({'message': 'Usuario creado correctamente', 'id': nuevo_usuario.id}), 201
+    except KeyError as e:
+        return jsonify({'message': 'Falta un campo requerido', 'error': str(e)}), 400
+    except Exception as e:
+        return jsonify({'message': 'Error interno del servidor', 'error': str(e)}), 500
 
-            return jsonify({'message': 'Usuario creado correctamente'})
-        
-        except KeyError as e:
-            return jsonify({'message': 'Falta un campo requerido', 'error': str(e)}), 400
+# Obtener todos los usuarios
+@app.route('/usuarios', methods=['GET'])
+def obtener_usuarios():
+    try:
+        usuarios = User.query.all()
+        usuarios_data = []
+        for usuario in usuarios:
+            usuario_data = {
+                'id': usuario.id,
+                'usuario': usuario.usuario,
+                'email': usuario.email,
+            }
+            usuarios_data.append(usuario_data)
+        return jsonify(usuarios_data)
+    except Exception as e:
+        return jsonify({'message': 'Error al obtener usuarios', 'error': str(e)}), 500
 
-        except Exception as e:
-            return jsonify({'message': 'Error interno del servidor', 'error': str(e)}), 500
-        
-    elif request.method == 'GET':
-        return render_template('registrar_user/index.html')
+# Obtener un usuario por ID
+@app.route('/usuarios/<int:id>', methods=['GET'])
+def obtener_usuario_por_id(id):
+    try:
+        usuario = User.query.get(id)
+
+        if not usuario:
+            return jsonify({'message': 'Usuario no encontrado'}), 404
+
+        usuario_data = {
+            'id': usuario.id,
+            'usuario': usuario.usuario,
+            'email': usuario.email,
+        }
+        return jsonify(usuario_data)
+    except Exception as e:
+        return jsonify({'message': 'Error al obtener usuario', 'error': str(e)}), 500
+
+# Actualizar un usuario
+@app.route('/usuarios/<int:id>', methods=['PUT'])
+def actualizar_usuario(id):
+    try:
+        usuario = User.query.get(id)
+
+        if not usuario:
+            return jsonify({'message': 'Usuario no encontrado'}), 404
+
+        data = request.json
+        usuario.usuario = data.get('usuario', usuario.usuario)
+        usuario.email = data.get('email', usuario.email)
+        usuario.contraseña = data.get('contraseña', usuario.contraseña)
+
+        db.session.commit()
+
+        return jsonify({'message': 'Usuario actualizado correctamente'}), 200
+    except Exception as e:
+        return jsonify({'message': 'Error interno del servidor', 'error': str(e)}), 500
+
+# Eliminar un usuario
+@app.route('/usuarios/<int:id>', methods=['DELETE'])
+def eliminar_usuario(id):
+    try:
+        usuario = User.query.get(id)
+
+        if not usuario:
+            return jsonify({'message': 'Usuario no encontrado'}), 404
+
+        db.session.delete(usuario)
+        db.session.commit()
+
+        return jsonify({'message': 'Usuario eliminado correctamente'}), 200
+    except Exception as e:
+        return jsonify({'message': 'Error interno del servidor', 'error': str(e)}), 500
+
 
 if __name__ == '__main__':
     print('Iniciando servidor...')
