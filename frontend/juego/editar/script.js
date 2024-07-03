@@ -63,6 +63,12 @@ function enviarJuego(juegoData) {
     });
 }
 
+function request_error(error) {
+    console.error("Error al realizar la solicitud:", error);
+}
+
+const parametros = window.location.search;
+const id = new URLSearchParams(parametros).get("id");
 
 fetch("http://localhost:5000/juegos/"+id)   
     .then(response_received)

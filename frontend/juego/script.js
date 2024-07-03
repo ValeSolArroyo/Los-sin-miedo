@@ -43,9 +43,30 @@ function parse_data(content) {
     container.appendChild(item);
 }
 
+
+function eliminar_juego() {
+    const confirmacion = confirm(`Estas seguro que quieres eliminar el juego?`)
+    if (!confirmacion) {
+        return;
+    }
+
+    fetch("http://localhost:5000/juegos/"+id, {
+        method: 'DELETE'
+    })
+    .then(response_received)
+    .then(data => {
+        alert('Juego eliminado exitosamente!');
+        window.location.href = 'http://localhost:8000/';
+    })
+    .catch(request_error);
+}
+
 function request_error(error) {
     console.error("Error al realizar la solicitud:", error);
 }
+
+const parametros = window.location.search;
+const id = new URLSearchParams(parametros).get("id");
 
 document.getElementById("editar").setAttribute("href", `/juego/editar/?id=${id}`);
 
