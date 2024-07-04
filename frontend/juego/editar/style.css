@@ -1,0 +1,32 @@
+body {
+    background-color: #1b2838;
+    color: #c7d5e0;
+}
+
+h1 {
+    color: #ffffff;
+}
+
+.form-group label {
+    color: #c7d5e0;
+}
+
+.form-control {
+    background-color: #2a475e;
+    color: #ffffff;
+    border: none;
+}
+
+.form-control::placeholder {
+    color: #b8b6b4;
+}
+
+.btn-primary {
+    background-color: #5c7e10;
+    border-color: #5c7e10;
+}
+
+.btn-primary:hover {
+    background-color: #4b6410;
+    border-color: #4b6410;
+}
