@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from models import db, Juego, User
+from models import db, Juego, User, UserJuego
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -150,10 +150,23 @@ def obtener_usuario_por_id(id):
         if not usuario:
             return jsonify({'message': 'Usuario no encontrado'}), 404
 
+        juegos_data = []
+        for user_juego in usuario.juegos:
+            juego = Juego.query.get(user_juego.id_juego)
+            juego_data = {
+                'id': juego.id,
+                'nombre': juego.nombre,
+                'precio': juego.precio,
+                'fecha_creacion': juego.fecha_creacion.strftime('%d/%m/%Y'),
+                'imagen': juego.imagen
+            }
+            juegos_data.append(juego_data)
+
         usuario_data = {
             'id': usuario.id,
             'usuario': usuario.usuario,
             'email': usuario.email,
+            'juegos': juegos_data
         }
         return jsonify(usuario_data)
     except Exception as e:
@@ -194,7 +207,46 @@ def eliminar_usuario(id):
         return jsonify({'message': 'Usuario eliminado correctamente'}), 200
     except Exception as e:
         return jsonify({'message': 'Error interno del servidor', 'error': str(e)}), 500
+    
+# Endpoint para asignar juegos a usuarios
+@app.route('/asignar_juego', methods=['POST'])
+def asignar_juego_a_usuario():
+    try:
+        data = request.json
+        id_usuario = data['id_usuario']
+        id_juego = data['id_juego']
 
+        usuario = User.query.get(id_usuario)
+        juego = Juego.query.get(id_juego)
+
+        if not usuario:
+            return jsonify({'message': 'Usuario no encontrado'}), 404
+        if not juego:
+            return jsonify({'message': 'Juego no encontrado'}), 404
+
+        nueva_relacion = UserJuego(id_usuario=id_usuario, id_juego=id_juego)
+        db.session.add(nueva_relacion)
+        db.session.commit()
+
+        return jsonify({'message': 'Juego asignado exitosamente al usuario'})
+    except KeyError as e:
+        return jsonify({'message': 'Falta un campo requerido', 'error': str(e)}), 400
+    except Exception as e:
+        return jsonify({'message': 'Error interno del servidor', 'error': str(e)}), 500
+    
+
+
+"""     
+Si se quiere asignar al usuario de id 1 el juego de id 2 se puede usar en la terminal:
+
+curl -X POST http://localhost:5000/asignar_juego \
+-H "Content-Type: application/json" \
+-d '{
+    "id_usuario": 1,
+    "id_juego": 2
+}' 
+
+"""
 
 if __name__ == '__main__':
     print('Iniciando servidor...')
