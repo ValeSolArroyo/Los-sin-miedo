@@ -14,5 +14,3 @@ python3 app.py
 cd frontend
 python3 -m http.server
 ```
-
-Requiere una base de datos creada previamente llamada "tienda"
