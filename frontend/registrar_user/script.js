@@ -17,7 +17,7 @@ function manejarEnvioFormulario(event) {
 }
 
 function enviarUsuario(usuarioData) {
-    fetch('http://localhost:5000/registro', {
+    fetch('http://localhost:5000/usuarios', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
