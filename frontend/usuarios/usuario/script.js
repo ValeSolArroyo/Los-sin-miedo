@@ -56,7 +56,12 @@ function parse_data(content) {
         container.appendChild(mensaje);
     }
 
-    // Cargar juegos disponibles para seleccionar
+    // Configurar el botón de edición de usuario
+    const parametros = new URLSearchParams(window.location.search);
+    const id = parametros.get("id");
+    const editarUsuarioBtn = document.getElementById("editarUsuario");
+    editarUsuarioBtn.setAttribute("href", `editar/index.html?id=${id}`);
+
     cargarJuegosDisponibles();
 }
 
@@ -77,15 +82,15 @@ function cargarJuegosDisponibles() {
 }
 
 function eliminar_usuario() {
-    const confirmacion = confirm(`Estas seguro que quieres eliminar el usuario?`)
+    const confirmacion = confirm(`¿Estás seguro que quieres eliminar el usuario?`);
     if (!confirmacion) {
         return;
     }
 
-    const parametros = window.location.search;
-    const id = new URLSearchParams(parametros).get("id");
+    const parametros = new URLSearchParams(window.location.search);
+    const id = parametros.get("id");
 
-    fetch("http://localhost:5000/usuarios/" + id, {
+    fetch(`http://localhost:5000/usuarios/${id}`, {
         method: 'DELETE'
     })
     .then(response_received)
@@ -123,10 +128,10 @@ function request_error(error) {
 }
 
 // Obtener el ID del usuario desde la URL y cargar sus datos
-const parametros = window.location.search;
-const id = new URLSearchParams(parametros).get("id");
+const parametros = new URLSearchParams(window.location.search);
+const id = parametros.get("id");
 
-fetch("http://localhost:5000/usuarios/" + id)
+fetch(`http://localhost:5000/usuarios/${id}`)
     .then(response_received)
     .then(parse_data)
     .catch(request_error);
