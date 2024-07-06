@@ -115,8 +115,3 @@ a:hover {
 ::-webkit-scrollbar-thumb:hover {
     background: #3b3c4e;
 }
-
-a:hover {
-    color: #417a9b;
-    text-decoration: underline;
-}
