@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)
 
 port = 5000
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:postgres@localhost:5432/testeo'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:postgres@localhost:5432/tienda'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
@@ -200,6 +200,11 @@ def eliminar_usuario(id):
 
         if not usuario:
             return jsonify({'message': 'Usuario no encontrado'}), 404
+
+        # Eliminar las referencias en usuario_juegos
+        usuario_juegos = UserJuego.query.filter_by(id_usuario=id).all()
+        for juego in usuario_juegos:
+            db.session.delete(juego)
 
         db.session.delete(usuario)
         db.session.commit()
