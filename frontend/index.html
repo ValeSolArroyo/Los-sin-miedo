@@ -10,18 +10,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body data-bs-theme="dark">
-    <div class="container my-4">
-        <div class="row">
-            <div class="col">
-                <h1>Juegos</h1>
-                <a href="registrar_user" class="btn btn-success mb-3">Registrar usuario</a>
-                <a href="/crear_juego" class="btn btn-success mb-3">Crear juego</a>
-                <a href="/usuarios" class="btn btn-success mb-3">Ver usuarios</a>
+<body>
+    <header class="encabezado">
+        <nav class="navegador">
+            <h1 class="navegador-nmbr">Steamcito</h1>
+            <div class="navegador-btn">
+                <a href="registrar_user" class="boton">Registrar usuario</a>
+                <a href="crear_juego" class="boton">Crear juego</a>
+                <a href="usuarios" class="boton">Ver usuarios</a>
             </div>
-        </div>
-    </div>
-
+        </nav>
+    </header>
+    <main>
+        <h2 class="contenedor">Juegos</h2>
     <div class="container">
         <div class="row g-4" id="juegos">
         </div>
