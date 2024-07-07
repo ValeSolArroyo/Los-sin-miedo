@@ -30,3 +30,24 @@ h1 {
     background-color: #4b6410;
     border-color: #4b6410;
 }
+.encabezado{
+    background-color: #171d25;
+    position: sticky;
+    top: 0;
+    padding: 1em 0em 1em 2em;
+}
+::-webkit-scrollbar {
+    width: 7.5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #13121c;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3c536d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3b3c4e;
+}
