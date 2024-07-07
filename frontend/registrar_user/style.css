@@ -3,8 +3,9 @@ body {
     color: #c7d5e0;
 }
 
-h2 {
+header {
     text-align: center;
+    margin-top: 30px;
     margin-bottom: 30px;
 }
 
@@ -47,6 +48,21 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #0056b3;
+}
+.button{
+    background-color: #f54242;
+    border-radius: 4px;
+    padding: 10px 20px;
+    position: absolute;
+    text-decoration: none;
+    color: #fff;
+    margin-left: 123px;
+}
+.button:hover{
+    background-color: #d32f2f;
+}
+.section{
+    gap: 2em;
 }
 
 /* Bootstrap overrides */
