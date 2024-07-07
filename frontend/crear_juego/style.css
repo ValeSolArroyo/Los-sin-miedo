@@ -12,9 +12,9 @@ h1 {
 }
 
 .form-control {
-    background-color: #2a475e;
+    background-color: #29343d;
     color: #ffffff;
-    border: none;
+    border-color: white;
 }
 
 .form-control::placeholder {
@@ -25,8 +25,28 @@ h1 {
     background-color: #5c7e10;
     border-color: #5c7e10;
 }
-
 .btn-primary:hover {
     background-color: #4b6410;
     border-color: #4b6410;
+}
+.encabezado{
+    background-color: #171d25;
+    position: sticky;
+    top: 0;
+    padding: 2em 0em 2em 2em;;
+}
+::-webkit-scrollbar {
+    width: 7.5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #13121c;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3c536d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3b3c4e;
 }
