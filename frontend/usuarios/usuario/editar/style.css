@@ -54,3 +54,36 @@ button[type="submit"]:hover {
     max-width: 600px;
     margin-top: 50px;
 }
+.encabezado{
+    background-color: #171d25;
+    position: sticky;
+    top: 0;
+    padding: 2em 0em 2em 2em;;
+}
+::-webkit-scrollbar {
+    width: 7.5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #13121c;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3c536d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3b3c4e;
+}
+.button{
+    background-color: #f54242;
+    border-radius: 4px;
+    padding: 10px 20px;
+    position: absolute;
+    text-decoration: none;
+    color: #fff;
+    margin-left: 79px;
+}
+.button:hover{
+    background-color: #d32f2f;
+}
