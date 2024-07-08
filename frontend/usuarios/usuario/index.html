@@ -10,20 +10,21 @@
 </head>
 <body data-bs-theme="dark">
     <div class="container">
-        <div class="row" id="usuario">
-            <!-- Contenido generado dinámicamente por JavaScript -->
+        <div class="row" id="usuario"></div>
+
+        <!-- Botones de edición y eliminación -->
+        <div class="mt-4">
+            <a id="editarUsuario" class="btn btn-warning me-2">Editar Usuario</a>
+            <button class="btn btn-danger" onclick="eliminar_usuario()">Eliminar Usuario</button>
         </div>
 
         <!-- Selección de juego para asignar -->
         <div class="mt-4">
             <label for="selectJuegos" class="form-label">Selecciona un juego:</label>
-            <select id="selectJuegos" class="form-select">
-                <!-- Options serán generados dinámicamente por JavaScript -->
-            </select>
+            <select id="selectJuegos" class="form-select"></select>
             <button class="btn btn-primary mt-2" onclick="asignarJuego()">Asignar Juego</button>
         </div>
     </div>
-    <button class="btn btn-danger" onclick="eliminar_usuario()">Eliminar usuario</button>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
