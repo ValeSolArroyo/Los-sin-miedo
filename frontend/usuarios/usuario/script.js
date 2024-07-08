@@ -27,7 +27,7 @@ function parse_data(content) {
             titulo.textContent = juego.nombre;
 
             const link = document.createElement("a");
-            link.setAttribute("href", `juego?id=${juego.id}`);
+            link.setAttribute("href", `http://localhost:8000/juego?id=${juego.id}`);
 
             const imagen = document.createElement("img");
             imagen.setAttribute("class", "card-img-top mb-2");

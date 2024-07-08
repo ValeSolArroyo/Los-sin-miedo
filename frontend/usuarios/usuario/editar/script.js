@@ -11,7 +11,7 @@ function handle_get_response(data) {
 document.addEventListener("DOMContentLoaded", function() {
     const parametros = new URLSearchParams(window.location.search);
     const id = parametros.get("id");
-
+    document.getElementById('cancelar').setAttribute('href', `http://localhost:8000/usuarios/usuario/?id=${id}`);
     if (!id) {
         console.error("ID de usuario no encontrado en la URL.");
         alert("Error: ID de usuario no encontrado.");
@@ -68,3 +68,5 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+

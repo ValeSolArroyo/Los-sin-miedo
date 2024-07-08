@@ -70,6 +70,8 @@ function request_error(error) {
 const parametros = window.location.search;
 const id = new URLSearchParams(parametros).get("id");
 
+document.getElementById('cancelar').setAttribute('href', `http://localhost:8000/juego/?id=${id}`);
+
 fetch("http://localhost:5000/juegos/"+id)   
     .then(response_received)
     .then(handle_get_response)
