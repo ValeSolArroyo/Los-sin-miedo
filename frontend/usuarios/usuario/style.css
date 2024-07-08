@@ -45,36 +45,3 @@ a:hover {
     color: #417a9b;
     text-decoration: underline;
 }
-::-webkit-scrollbar {
-    width: 7.5px;
-}
-
-::-webkit-scrollbar-track {
-    background: #13121c;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #3c536d;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #3b3c4e;
-}
-.box{
-    padding: 1em 0em 0em 7em;
-    
-}
-.volver{
-    width: 200px;
-    border-color: solid black;
-    background-color: #27384f;
-    text-decoration: none;
-    padding: 2px 1px 2px 1px;
-    border-radius: 10px;
-}
-.volver a{
-    text-decoration: none;
-    font-size: 20px;
-    color: white;
-    text-align: center;
-}
