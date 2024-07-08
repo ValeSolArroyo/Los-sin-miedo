@@ -76,6 +76,11 @@ def eliminar_juego(id):
 
         if not juego:
             return jsonify({'message': 'Juego no encontrado'}), 404
+        
+        # Eliminar las referencias en usuario_juegos
+        usuario_juegos = UserJuego.query.filter_by(id_jurgo=id).all()
+        for usuario in usuario_juegos:
+            db.session.delete(usuario)
 
         db.session.delete(juego)
         db.session.commit()
