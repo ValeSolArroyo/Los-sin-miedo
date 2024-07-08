@@ -11,29 +11,29 @@
 </head>
 
 <body data-bs-theme="dark">
+    <header>
+    <h2>Crea tu cuenta</h2>
+    </header>
     <main>
         <div class="container mt-4">
-            <h1>Editar Juego</h1>
-            <form id="juegoForm" class="mt-4">
+            
+            <form id="usuarioForm" class="mt-4">
                 <div class="form-group mb-3">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    <label for="usuario">Nombre de Usuario:</label>
+                    <input type="text" class="form-control" id="usuario" name="usuario" required>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="precio">Precio:</label>
-                    <input type="number" class="form-control" id="precio" name="precio" required>
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="fecha_creacion">Fecha de Creación:</label>
-                    <input type="text" class="form-control" id="fecha_creacion" name="fecha_creacion"
-                        placeholder="dd/mm/aa" required>
+                    <label for="contraseña">Contraseña:</label>
+                    <input type="password" class="form-control" id="contraseña" name="contraseña" required>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="imagen">URL imagen:</label>
-                    <input type="text" class="form-control" id="imagen" name="imagen" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Editar</button>
-                <a href="../index.html" class="btn btn-danger">Cancelar</a>
+                <section class="section">
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                    <a class="button" href="../index.html" class="btn link">Cancelar</a>
+                </section>
             </form>
         </div>
     </main>
