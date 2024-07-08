@@ -3,6 +3,8 @@ Es una pagina que es parecida a steam. Para que funcione la pagina tiene que seg
 ___
 ## Base de datos
 ```sql
+CREATE DATABASE tienda;
+
 CREATE TABLE juegos (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
